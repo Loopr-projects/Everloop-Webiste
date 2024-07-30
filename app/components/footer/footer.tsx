@@ -1,7 +1,17 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
+import { motion, useAnimation } from "framer-motion";
+import Image from "next/image";
 
 export default function footer() {
+  const [isHovering, setIsHovering] = useState(false);
+
+  const controls = useAnimation();
+  const controls2 = useAnimation();
+  const controls3 = useAnimation();
+  const controls4 = useAnimation();
   return (
     <footer className="font-poppins text-white w-full h-screen flex flex-col justify-center items-center gap-1">
       <div className="flex items-center justify-center w-full gap-1 min-h-[308px] text-[24px]">
@@ -14,7 +24,7 @@ export default function footer() {
           </p>
         </div>
         <div className="w-1/2 flex gap-1 items-center justify-center h-full">
-          <div className="bg-black rounded-[50px] px-[54px] py-11 w-full h-full flex justify-between">
+          <div className="bg-black rounded-[50px] px-[54px] py-11 w-full h-full flex justify-between z-10">
             <h4 className="font-medium text-white/70">EXPLORE</h4>
             <nav className="flex flex-col justify-end gap-3">
               <p>Our story</p>
@@ -23,11 +33,63 @@ export default function footer() {
               <p>Team</p>
             </nav>
           </div>
-          <div className="bg-black rounded-[50px] px-[54px] py-11 w-full h-full flex justify-between">
+          <div className="bg-black rounded-[50px] px-[54px] py-11 w-full h-full flex justify-between relative">
+            <motion.div
+              className="absolute top-[350px] right-[350px]  w-[338px] h-[338px]"
+              animate={controls}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 13,
+                duration: 0.6,
+              }}
+            >
+              <Image
+                src={"/assets/linkedin-icon.svg"}
+                height={338}
+                width={338}
+                alt="Linkedin logo"
+                className=""
+              ></Image>
+            </motion.div>
+            <motion.div
+              className="absolute top-[350px] right-[350px]  w-[338px] h-[338px]"
+              animate={controls2}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 13,
+                duration: 0.6,
+              }}
+            >
+              <Image
+                src={"/assets/dribbble-icon.svg"}
+                height={338}
+                width={338}
+                alt="Linkedin logo"
+                className=""
+              ></Image>
+            </motion.div>
             <h4 className="font-medium text-white/70">FOLLOW</h4>
             <nav className="flex flex-col justify-end gap-3">
-              <p>LinkedIn</p>
-              <p>Dribbble</p>
+              <a
+                href="/"
+                onMouseEnter={() =>
+                  controls.start({ y: -250, x: 120, rotate: 15 })
+                }
+                onMouseLeave={() => controls.start({ y: 0, x: 0, rotate: 0 })}
+              >
+                LinkedIn
+              </a>
+              <a
+                href="/"
+                onMouseEnter={() =>
+                  controls2.start({ y: -250, x: 120, rotate: 15 })
+                }
+                onMouseLeave={() => controls2.start({ y: 0, x: 0, rotate: 0 })}
+              >
+                Dribbble
+              </a>
               <p>Behance</p>
               <p>Instagram</p>
             </nav>
