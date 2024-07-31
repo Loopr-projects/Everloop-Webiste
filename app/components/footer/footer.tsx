@@ -70,10 +70,47 @@ export default function footer() {
                 className=""
               ></Image>
             </motion.div>
+            <motion.div
+              className="absolute top-[350px] right-[350px]  w-[338px] h-[338px]"
+              animate={controls3}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 13,
+                duration: 0.6,
+              }}
+            >
+              <Image
+                src={"/assets/instagram-2016-5.svg"}
+                height={338}
+                width={338}
+                alt="Linkedin logo"
+                className=""
+              ></Image>
+            </motion.div>
+            <motion.div
+              className="absolute top-[350px] right-[350px]  w-[338px] h-[338px]"
+              animate={controls4}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 13,
+                duration: 0.6,
+              }}
+            >
+              <Image
+                src={"/assets/behance.svg"}
+                height={338}
+                width={338}
+                alt="Linkedin logo"
+                className=""
+              ></Image>
+            </motion.div>
             <h4 className="font-medium text-white/70">FOLLOW</h4>
             <nav className="flex flex-col justify-end gap-3">
               <a
                 href="/"
+                className="hover:underline underline-offset-4"
                 onMouseEnter={() =>
                   controls.start({ y: -250, x: 120, rotate: 15 })
                 }
@@ -83,6 +120,7 @@ export default function footer() {
               </a>
               <a
                 href="/"
+                className="hover:underline underline-offset-4"
                 onMouseEnter={() =>
                   controls2.start({ y: -250, x: 120, rotate: 15 })
                 }
@@ -90,8 +128,26 @@ export default function footer() {
               >
                 Dribbble
               </a>
-              <p>Behance</p>
-              <p>Instagram</p>
+              <a
+                href="/"
+                className="hover:underline underline-offset-4"
+                onMouseEnter={() =>
+                  controls4.start({ y: -250, x: 120, rotate: 15 })
+                }
+                onMouseLeave={() => controls4.start({ y: 0, x: 0, rotate: 0 })}
+              >
+                Behance
+              </a>
+              <a
+                href="/"
+                className="hover:underline underline-offset-4"
+                onMouseEnter={() =>
+                  controls3.start({ y: -250, x: 120, rotate: 15 })
+                }
+                onMouseLeave={() => controls3.start({ y: 0, x: 0, rotate: 0 })}
+              >
+                Instagram
+              </a>
             </nav>
           </div>
         </div>
