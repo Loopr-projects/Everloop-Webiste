@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
@@ -12,6 +12,37 @@ export default function footer() {
   const controls2 = useAnimation();
   const controls3 = useAnimation();
   const controls4 = useAnimation();
+  const takeOff = useAnimation();
+
+  const jiggle = {
+    initial: { x: 0 },
+    animate: {
+      x: [0, -5, 5, -5, 5, -5, 5, -5, 0],
+      transition: { duration: 0.8, repeat: Infinity, repeatDelay: 0.2 },
+    },
+  };
+
+  const spiralOut = {
+    initial: { x: 0, y: 0, rotate: 0, scale: 1 },
+    animate: {
+      x: "100vw",
+      y: "-100vh",
+      rotate: 360,
+      scale: 0,
+      transition: { duration: 2, delay: 2 },
+    },
+  };
+
+  useEffect(() => {
+    // Start jiggle animation first
+    takeOff.start("animate");
+
+    // After 2 seconds, start spiral out animation
+    setTimeout(() => {
+      takeOff.start("spiralOut");
+    }, 2000);
+  }, [takeOff]);
+
   return (
     <footer className="font-poppins text-white w-full h-screen flex flex-col justify-center items-center gap-1">
       <div className="flex items-center justify-center w-full gap-1 min-h-[308px] text-[24px]">
@@ -159,7 +190,14 @@ export default function footer() {
         </h1>
         <div className="text-4xl font-normal flex gap-4 items-center">
           info@everloop.be
-          <ArrowUpRightIcon className="w-9 h-9" />
+          <motion.div
+            initial="initial"
+            animate={takeOff}
+            variants={{ animate: jiggle.animate, spiralOut: spiralOut.animate }}
+            className="w-9 h-9 "
+          >
+            <ArrowUpRightIcon className="w-9 h-9" />
+          </motion.div>
         </div>
         <div className="bottom-0 absolute flex flex-col gap-2 p-2 text-white/20 w-full items-center">
           <hr className="w-4/5 h-[1px] border-white/20" />
